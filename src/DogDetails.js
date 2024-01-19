@@ -15,10 +15,12 @@ function DogDetails({ getDogByName }){
   return(
   <div className="DogDetails">
     <p>Name: {dog.name}</p>
-    {/* <img src={`../public/${dog.src}.jpg`} /> */}
-    <img alt="test" src={"/home/erichuie/rithm/exercises/react-router-dog-finder/public/duke.jpg"}/>
+    <img alt="test" src={`/${dog.src}.jpg`}/>
     <p>Age: {dog.age}</p>
-    <p>Facts: <ul>{dog.facts.map(fact => <li>{fact}</li>)}</ul></p>
+    <div>Facts: <ul>
+      {dog.facts.map(fact => <li key={fact}>{fact}</li>)}
+      </ul>
+    </div>
   </div>)
 }
 
