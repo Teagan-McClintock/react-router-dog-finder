@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 /**Renders a navbar with a list of dogs and links to their detail pages
  *
  * Props:
- * -dogs: array
+ * -dogs: array of dog objects
  *
  * State: none
  */
@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function Nav({ dogs }) {
   return (
     <div>
-      { dogs.map(dog => <p>{dog}</p>) }
+      { dogs.map(dog => <p>{dog.name}</p>) }
     </div>
   );
 }

@@ -5,9 +5,7 @@ import DogList from "./DogList";
 import DogDetails from "./DogDetails";
 import OtherRoutes from "./OtherRoutes";
 import { useEffect, useState } from "react";
-const DOG_LIST_URL = 'http://localhost:5001/dogs'
-
-const dogNames=["Fido"];
+const DOG_LIST_URL = 'http://localhost:5001/dogs';
 
 /**Renders the app
  *
@@ -19,22 +17,35 @@ const dogNames=["Fido"];
 function App() {
   const [dogs, setDogs] = useState([]);
 
-  useEffect(function(){
-    async function getDogs(){
-      const response = await fetch(DOG_LIST_URL);
-      const dogs = await response.json();
-      setDogs(dogs);
-    }
-    getDogs();
-  }, [ ]);
+  // useEffect(function () {
+  //   async function getDogs() {
+  //     const response = await fetch(DOG_LIST_URL);
+  //     const dogs = await response.json();
+  //     setDogs(dogs);
+  //   }
+  //   getDogs();
+  // }, [ ]);
+
+  async function getDogs() {
+        const response = await fetch(DOG_LIST_URL);
+        const dogs = await response.json();
+        setDogs(dogs);
+  }
+
+  function getDogByName(name){
+    console.log("Inside getDogByName, dogs=", dogs);
+    return dogs.filter(dog => dog.name === name)[0];
+  }
+
+  if (dogs.length === 0) getDogs();
 
   return (
     <BrowserRouter>
-      <Nav dogs={dogNames}/>
+      <Nav dogs={dogs} />
       <Routes>
-        <Route element= { <DogList dogs={dogs}/>} path="/dogs" />
-        <Route element= { <DogDetails />} path="/dogs/:name" />
-        <Route element= { <OtherRoutes />} path="/*" />
+        <Route element={<DogDetails getDogByName={getDogByName} />} path="/dogs/:name" />
+        <Route element={<DogList dogs={dogs} />} path="/dogs" />
+        <Route element={<OtherRoutes />} path="/*" />
       </Routes>
     </BrowserRouter>
   );

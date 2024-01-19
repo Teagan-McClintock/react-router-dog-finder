@@ -7,6 +7,7 @@
  */
 
 function DogList({ dogs }) {
+  console.log("Rendering DogList");
   return(
   <div>
     { dogs.map(dog => <p>{dog.name}</p>) }
