@@ -8,8 +8,12 @@ import { Link } from "react-router-dom";
  * State: none
  */
 
-function Nav(dogs) {
-
+function Nav({ dogs }) {
+  return (
+    <div>
+      { dogs.map(dog => <p>{dog}</p>) }
+    </div>
+  );
 }
 
 export default Nav;

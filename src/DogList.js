@@ -1,12 +1,17 @@
+
 /**A list of all dogs with their names and images
  *
- * Props: None
+ * Props: dogs: list of dog objects
  *
  * State: None
  */
 
-function DogList() {
-
+function DogList({ dogs }) {
+  return(
+  <div>
+    { dogs.map(dog => <p>{dog.name}</p>) }
+  </div>
+  );
 }
 
 export default DogList;
