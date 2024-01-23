@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-
 /**"Profile" page for a specific dog
  *
  * Props: dogs: array of dog objects
@@ -13,9 +12,11 @@ function DogDetails({ getDogByName }){
 
   const dog = getDogByName(name);
 
-  return(<div className="DogDetails">
+  return(
+  <div className="DogDetails">
     <p>Name: {dog.name}</p>
-    <img src={`/public/${dog.src}.jpg`} />
+    {/* <img src={`../public/${dog.src}.jpg`} /> */}
+    <img alt="test" src={"/home/erichuie/rithm/exercises/react-router-dog-finder/public/duke.jpg"}/>
     <p>Age: {dog.age}</p>
     <p>Facts: <ul>{dog.facts.map(fact => <li>{fact}</li>)}</ul></p>
   </div>)

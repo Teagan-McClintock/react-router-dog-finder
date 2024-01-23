@@ -16,6 +16,7 @@ const DOG_LIST_URL = 'http://localhost:5001/dogs';
 
 function App() {
   const [dogs, setDogs] = useState([]);
+  const [isDogsLoaded, setIsDogsLoaded] = useState(false);
 
   // useEffect(function () {
   //   async function getDogs() {
@@ -30,25 +31,32 @@ function App() {
         const response = await fetch(DOG_LIST_URL);
         const dogs = await response.json();
         setDogs(dogs);
+        setIsDogsLoaded(true);
   }
 
   function getDogByName(name){
     console.log("Inside getDogByName, dogs=", dogs);
-    return dogs.filter(dog => dog.name === name)[0];
+    return dogs.filter(dog => dog.name.toLowerCase() === name.toLowerCase())[0];
   }
 
-  if (dogs.length === 0) getDogs();
-
-  return (
-    <BrowserRouter>
-      <Nav dogs={dogs} />
-      <Routes>
-        <Route element={<DogDetails getDogByName={getDogByName} />} path="/dogs/:name" />
-        <Route element={<DogList dogs={dogs} />} path="/dogs" />
-        <Route element={<OtherRoutes />} path="/*" />
-      </Routes>
-    </BrowserRouter>
-  );
+  if (dogs.length === 0 && isDogsLoaded === false){
+    getDogs();
+    return(<div>
+      <p>Loading</p>
+    </div>)
+  }
+  else{
+    return (
+      <BrowserRouter>
+        <Nav dogs={dogs} />
+        <Routes>
+          <Route element={<DogDetails getDogByName={getDogByName} />} path="/dogs/:name" />
+          <Route element={<DogList dogs={dogs} />} path="/dogs" />
+          <Route element={<OtherRoutes />} path="/*" />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
