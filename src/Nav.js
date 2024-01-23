@@ -14,7 +14,8 @@ function Nav({ dogs }) {
       {dogs.map(dog =>
         <Link className="Nav-link" key={`nav-${dog.name}`} to={`/dogs/${dog.name}`}>
           {dog.name}
-        </Link>)}
+        </Link>
+      )}
     </div>
   );
 }

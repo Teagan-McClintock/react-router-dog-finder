@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import OtherRoutes from "./OtherRoutes";
+
 /**"Profile" page for a specific dog to display all their information
  *
  * Props: getDogByName: function to find the specific dog object in App's state
@@ -12,6 +13,7 @@ function DogDetails({ getDogByName }) {
   console.log("got to DogDetails, name=", name);
 
   const dog = getDogByName(name);
+  //change to just navigate directly to homepage
   if (!dog) {
     return (
       <OtherRoutes />

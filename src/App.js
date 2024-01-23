@@ -36,27 +36,35 @@ function App() {
 
   /**Given the name of a dog, returns the first element of the dog array in
    * state that has a dog with that name
+   *
+   * returns undefined if dog does not exist
    */
 
   function getDogByName(name) {
     console.log("Inside getDogByName, dogs=", dogs);
-    return dogs.filter(dog => dog.name.toLowerCase() === name.toLowerCase())[0];
+    //use
+    return dogs.find(dog => dog.name.toLowerCase() === name.toLowerCase());
   }
 
+  //remove dogs.length ===0
   if (dogs.length === 0 && isDogsLoaded === false) {
     getDogs();
-    return (<div>
+    return (
+    <div>
       <p>Loading</p>
     </div>);
   }
   else {
+    //could change OtherRoutes to inline Navigate instead
     return (
       <div className="App">
         <BrowserRouter>
           <Nav dogs={dogs} />
           <Routes>
-            <Route element={<DogDetails getDogByName={getDogByName} />} path="/dogs/:name" />
+            <Route element={<DogDetails getDogByName={getDogByName} />}
+             path="/dogs/:name" />
             <Route element={<DogList dogs={dogs} />} path="/dogs" />
+
             <Route element={<OtherRoutes />} path="/*" />
           </Routes>
         </BrowserRouter>
