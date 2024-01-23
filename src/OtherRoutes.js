@@ -7,8 +7,8 @@ import { Navigate } from "react-router-dom";
  * State: None
  */
 
-function OtherRoutes(){
-  return <Navigate to="/dogs" />
+function OtherRoutes() {
+  return <Navigate to="/dogs" />;
 }
 
 export default OtherRoutes;

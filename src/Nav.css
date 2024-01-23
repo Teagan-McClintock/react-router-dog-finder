@@ -1,0 +1,9 @@
+.Nav-link{
+  padding: 5px;
+}
+
+.Nav{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
